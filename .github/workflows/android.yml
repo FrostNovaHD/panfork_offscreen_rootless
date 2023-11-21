@@ -63,10 +63,12 @@ jobs:
           # cp "build-android-${{matrix.arch}}/src/gallium/drivers/zink/libzink.a" /tmp/zink/lib/
           mv /tmp/pan/lib/libOSMesa.so.8.0.0 /tmp/pan/lib/libOSMesa.so.8
           cp /tmp/pan/lib/libOSMesa.so.8 /tmp/pan/lib/libOSMesa_unstripped.so.8
+      - name: striping
+        run: |
           if [ "${{matrix.arch}}" == "arm32" ]; then
-          llvm-strip --strip-all  /tmp/pan/lib/libOSMesa.so.8
+          llvm-strip --strip-all  /tmp/pan/lib/libOSMesa_unstripped.so.8
           else
-          llvm-strip --strip-all /tmp/pan/lib/libOSMesa.so.8
+          llvm-strip --strip-all /tmp/pan/lib/libOSMesa_unstripped.so.8
           fi
       - name: Upload libraries
         uses: actions/upload-artifact@v2
