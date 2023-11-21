@@ -83,7 +83,7 @@ const struct panfrost_model panfrost_unknown_model = {
    .name = "Unknowm Mali device (Panfrost)",
    .performance_counters = "AAAA",
    .min_rev_anisotropic = NO_ANISO, 
-   .tilebuffer_size =  65536, 
+   .tilebuffer_size = 65536, 
    .quirks = {}, 
 };
 
