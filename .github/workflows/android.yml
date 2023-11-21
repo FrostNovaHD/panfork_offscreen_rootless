@@ -61,7 +61,6 @@ jobs:
             -Dshared-glapi=false
           ninja -C "build-android" install
           # cp "build-android-${{matrix.arch}}/src/gallium/drivers/zink/libzink.a" /tmp/zink/lib/
-          rm /tmp/pan/lib/libOSMesa.so /tmp/pan/lib/libOSMesa.so.8
           mv /tmp/pan/lib/libOSMesa.so.8.0.0 /tmp/pan/lib/libOSMesa.so.8
           cp /tmp/pan/lib/libOSMesa.so.8 /tmp/pan/lib/libOSMesa_unstripped.so.8
           if [ "${{matrix.arch}}" == "arm32" ]; then
