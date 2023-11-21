@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: |
           sudo apt update
-          sudo apt install -y meson libxrandr-dev libxxf86vm-dev libxcb-*-dev libx11-xcb-dev libxfixes-dev libdrm-dev libx11-dev
+          sudo apt install -y meson libxrandr-dev libxxf86vm-dev libxcb-*-dev libx11-xcb-dev libxfixes-dev libdrm-dev libx11-dev llvm
           pip3 install mako
           export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk-bundle"
           envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
@@ -64,9 +64,9 @@ jobs:
           mv /tmp/pan/lib/libOSMesa.so.8.0.0 /tmp/pan/lib/libOSMesa.so.8
           cp /tmp/pan/lib/libOSMesa.so.8 /tmp/pan/lib/libOSMesa_unstripped.so.8
           if [ "${{matrix.arch}}" == "arm32" ]; then
-            /usr/local/lib/android/sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/arm-linux-androideabi25-strip /tmp/pan/lib/libOSMesa.so.8
+          llvm-strip --strip-all  /tmp/pan/lib/libOSMesa.so.8
           else
-            /usr/local/lib/android/sdk/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/${{matrix.arch}}-linux-android-strip /tmp/pan/lib/libOSMesa.so.8
+          llvm-strip --strip-all /tmp/pan/lib/libOSMesa.so.8
           fi
       - name: Upload libraries
         uses: actions/upload-artifact@v2
