@@ -14,7 +14,7 @@ Windowing system support
 Panfrost Wayland compositor (wlroots):
 
 #. Panfrost Wayland clients
-#. Panfrost X11 clients via Xwayland [1]_
+#. Panfrost X11 clients via Xwayland [1]_ 
 #. Blob X11 clients via Xwayland + dri2to3 [2]_
 
 Panfrost Wayland compositor (non-wlroots):
