@@ -1186,15 +1186,13 @@ kbase_submit(kbase k, uint64_t va, unsigned req,
         }
 
         assert(KBASE_SLOT_COUNT == 2);
-        if (dep_slots[0] != nr) {
-                atom.pre_dep[0].atom_id = dep_slots[0];
-                /* TODO: Use data dependencies?  */
-                atom.pre_dep[0].dependency_type = BASE_JD_DEP_TYPE_ORDER;
-        }
-        if (dep_slots[1] != nr) {
-                atom.pre_dep[1].atom_id = dep_slots[1];
-                atom.pre_dep[1].dependency_type = BASE_JD_DEP_TYPE_ORDER;
-        }
+
+        atom.pre_dep[0].atom_id = dep_slots[0];
+        /* TODO: Use data dependencies?  */
+        atom.pre_dep[0].dependency_type = BASE_JD_DEP_TYPE_ORDER;
+
+        atom.pre_dep[1].atom_id = dep_slots[1];
+        atom.pre_dep[1].dependency_type = BASE_JD_DEP_TYPE_ORDER;
 
         if (extres.size) {
                 atom.core_req |= BASE_JD_REQ_EXTERNAL_RESOURCES;
