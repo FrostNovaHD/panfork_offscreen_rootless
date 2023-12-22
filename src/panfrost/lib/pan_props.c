@@ -70,14 +70,12 @@ const struct panfrost_model panfrost_model_list[] = {
 
 const struct panfrost_model panfrost_unknown_model = {
    .gpu_id = 0,
-   .name = "Unknown Mali device (Panfrost)",
+   .name = "Unknowm Mali device (Panfrost)",
    .performance_counters = "AAAA",
    .min_rev_anisotropic = NO_ANISO, 
    .tilebuffer_size = 8192, 
    .quirks = {}, 
 };
-
-/* clang-format on */
 
 #undef NO_ANISO
 #undef HAS_ANISO
@@ -90,12 +88,13 @@ const struct panfrost_model panfrost_unknown_model = {
 const struct panfrost_model *
 panfrost_get_model(uint32_t gpu_id)
 {
-   for (unsigned i = 0; i < ARRAY_SIZE(panfrost_model_list); ++i) {
-      if (panfrost_model_list[i].gpu_id == gpu_id)
-         return &panfrost_model_list[i];
-   }
+        
+        for (unsigned i = 0; i < ARRAY_SIZE(panfrost_model_list); ++i) {
+                if (panfrost_model_list[i].gpu_id == gpu_id)
+                        return &panfrost_model_list[i];
+        }
 
-   return &panfrost_unknown_model;
+        return &panfrost_unknown_model;
 }
 
 unsigned
