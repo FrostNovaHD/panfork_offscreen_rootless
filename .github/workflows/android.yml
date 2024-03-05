@@ -63,6 +63,8 @@ jobs:
             -Dbuildtype=debug \
             -Dandroid-libbacktrace=disabled
           ninja -C "build-android" install
+          mv /tmp/pan/lib/libOSMesa.so.8.0.0 /tmp/pan/lib/libOSMesa.so.8
+          cp /tmp/pan/lib/libOSMesa.so.8 /tmp/pan/lib/libOSMesa_unstripped.so.8
       - name: striping
         run: |
           if [ "${{matrix.arch}}" == "arm32" ]; then
