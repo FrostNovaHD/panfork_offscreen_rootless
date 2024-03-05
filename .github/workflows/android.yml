@@ -63,6 +63,13 @@ jobs:
             -Dbuildtype=debug \
             -Dandroid-libbacktrace=disabled
           ninja -C "build-android" install
+      - name: striping
+        run: |
+          if [ "${{matrix.arch}}" == "arm32" ]; then
+          llvm-strip --strip-all  /tmp/pan/lib/libOSMesa_unstripped.so.8
+          else
+          llvm-strip --strip-all /tmp/pan/lib/libOSMesa_unstripped.so.8
+          fi
       - name: Upload libraries
         uses: actions/upload-artifact@v2
         with:
